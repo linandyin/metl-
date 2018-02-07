@@ -31,7 +31,8 @@ init([]) ->
     Children = [
         {main_process, {main_process,start_link,[]},permanent,10000,worker,[main_process]},
         {ets_config, {ets_config,start_link,[]},permanent,10000,worker,[ets_config]},
-        {web_write_sup, {web_write_sup,start_link,[]},permanent,10000,worker,[web_write_sup]}
+        {mysql_web, {mysql_web,start_link,[]},permanent,10000,worker,[mysql_web]},
+        {web_write_sup, {web_write_sup,start_link,[]},permanent,10000,supervisor,[web_write_sup]}
     ],
     {ok, { {one_for_one, 0, 1},Children} }.
 
